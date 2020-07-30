@@ -1,4 +1,4 @@
-from send_to_slack.send_file import send_file, send_text
+from send_to_slack.send import send_file, send_text
 
 if __name__ == '__main__':
     file_path = "C:/Temp/file"

@@ -16,7 +16,7 @@ The token should look like something like
     ```   
 1. Then you can import the library in your project and use it like 
     ```python
-    from send_to_slack.send_file import send_file
+    from send_to_slack.send import send_file
     
     file_path = "C:/Temp/test_file.txt"
     channel = "#general"
