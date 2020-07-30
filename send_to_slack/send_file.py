@@ -6,12 +6,27 @@ import requests
 
 _slack_bot_token_env = "SLACK_BOT_TOKEN"
 _file_api_endpoint = "https://slack.com/api/files.upload"
+_message_api_endpoint = "https://slack.com/api/chat.postMessage"
 
 try:
     _bot_token = os.environ[_slack_bot_token_env]
 except:
     raise ValueError(
         f"You must set the environmental variable {_slack_bot_token_env} to your slack bot token which you can find at https://api.slack.com/.")
+
+
+def send_text(text: str, channel: str) -> requests.Response:
+    headers = {
+        "Authorization": f"Bearer {_bot_token}",
+    }
+
+    message = {
+        "channel": channel,
+        "text": text
+    }
+
+    response = requests.post(_message_api_endpoint, data=message, headers=headers)
+    return response
 
 
 def send_bytes(file: io.BufferedReader, channel: str, file_name: Optional[str] = None, comment: Optional[str] = None,
