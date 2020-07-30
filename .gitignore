@@ -152,3 +152,6 @@ fabric.properties
 
 # Env variables
 environment.env
+
+# Credentials for slack
+credentials/credentials.json
