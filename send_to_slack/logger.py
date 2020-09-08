@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import send_to_slack.load_credentials_to_env
 from send_to_slack.send_me import notify_me
 
@@ -7,9 +9,11 @@ class SlackLogger:
         self._send_to_slack = send_to_slack
         self._print_to_console = print_to_console
 
-    def message(self, text: str, send_to_slack: bool = None, print_to_console: bool = None):
+    def message(self, level: str, text: str, send_to_slack: bool = None, print_to_console: bool = None):
         send_to_slack = send_to_slack if send_to_slack is not None else self._print_to_console
         print_to_console = print_to_console if print_to_console is not None else self._print_to_console
+
+        text = f"[{level}] {str(datetime.now())}:\t {text}"
 
         if print_to_console:
             print(text)
@@ -18,20 +22,16 @@ class SlackLogger:
             notify_me(text)
 
     def debug(self, text: str):
-        message = f"[DEBUG] {text}"
-        self.message(message)
+        self.message("DEBUG", text)
 
     def info(self, text: str):
-        message = f"[INFO] {text}"
-        self.message(message)
+        self.message("INFO", text)
 
     def warn(self, text: str):
-        message = f"[WARN] {text}"
-        self.message(message)
+        self.message("WARN", text)
 
     def error(self, text: str):
-        message = f"[ERROR] {text}"
-        self.message(message)
+        self.message("ERROR", text)
 
 
 if __name__ == '__main__':
