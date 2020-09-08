@@ -10,7 +10,7 @@ class SlackLogger:
         self._print_to_console = print_to_console
 
     def message(self, level: str, text: str, send_to_slack: bool = None, print_to_console: bool = None):
-        send_to_slack = send_to_slack if send_to_slack is not None else self._print_to_console
+        send_to_slack = send_to_slack if send_to_slack is not None else self._send_to_slack
         print_to_console = print_to_console if print_to_console is not None else self._print_to_console
 
         text = f"[{level}] {str(datetime.now())}:\t {text}"
