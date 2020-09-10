@@ -3,6 +3,7 @@ import os
 from typing import Optional
 
 import requests
+import matplotlib.pyplot as plt
 
 _slack_bot_token_env = "SLACK_BOT_TOKEN"
 _file_api_endpoint = "https://slack.com/api/files.upload"
@@ -74,7 +75,6 @@ def plot_to_slack(channel: str, plot_name: Optional[str] = None, comment: Option
 
 
 if __name__ == "__main__":
-    import matplotlib.pyplot as plt
     import numpy as np
 
     channel = "#general"  # alternatively use "@user.name"
