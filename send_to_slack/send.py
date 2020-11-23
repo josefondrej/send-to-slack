@@ -5,9 +5,13 @@ from typing import Optional
 import requests
 import matplotlib.pyplot as plt
 
+from send_to_slack import load_credentials_to_env
+
 _slack_bot_token_env = "SLACK_BOT_TOKEN"
 _file_api_endpoint = "https://slack.com/api/files.upload"
 _message_api_endpoint = "https://slack.com/api/chat.postMessage"
+
+load_credentials_to_env
 
 try:
     _bot_token = os.environ[_slack_bot_token_env]
